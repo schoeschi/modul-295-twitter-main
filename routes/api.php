@@ -5,4 +5,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/tweets', [TweetController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
+Route::prefix('/users')
+    ->controller(UserController::class)
+    ->group(function () {
+        Route::get('/{id}', 'show');
+        Route::get('/{id}/tweets', 'findTweetsByUserId');
+    });
