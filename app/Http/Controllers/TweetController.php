@@ -9,7 +9,7 @@ class TweetController extends Controller
 {
     public function index()
     {
-        $tweets = Tweet::all()->take(100)->sortByDesc('created_at');
+        $tweets = Tweet::take(100)->latest()->get();
         return TweetResource::collection($tweets);
     }
 }

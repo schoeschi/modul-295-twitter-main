@@ -22,9 +22,8 @@ class TweetResource extends JsonResource
             "id" => $this->id,
             "text" => $this->text,
             "likes" => $this->likes,
-            "created_at" => $this->created_at,
-            "updated_at" => $this->updated_at,
-            "user" => $this->user,
+            "created_at" => $this->created_at->format('c'),
+            "user" => UserResource::make($this->user),
         ];
     }
 }
