@@ -9,7 +9,7 @@ class TweetController extends Controller
 {
     public function index()
     {
-        $tweets = Tweet::all();
+        $tweets = Tweet::all()->take(100)->sortByDesc('created_at');
         $tweets = $tweets->map(function ($tweet) {
             $tweet->user = [
                 "name" => "Franzi Musterfrau"
