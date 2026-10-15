@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Tweet;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,6 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Tweet::factory()->count(200)->create();
+        User::factory()
+            ->count(20)
+            ->has(Tweet::factory()->count(30))
+            ->create();
     }
 }
