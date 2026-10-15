@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,8 @@ class TweetFactory extends Factory
         return [
             "text" => fake()->realTextBetween(5, 160),
             "likes" => fake()->numberBetween(0, 5000),
-            "created_at" => fake()->dateTimeBetween('-1 year')->format('Y-m-d H:i:s')
+            "created_at" => fake()->dateTimeBetween('-1 year')->format('Y-m-d H:i:s'),
+            "user_id" => User::factory()
         ];
     }
 }

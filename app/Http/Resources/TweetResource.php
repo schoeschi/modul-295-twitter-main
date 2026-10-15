@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Tweet;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin Tweet
+ */
 class TweetResource extends JsonResource
 {
     /**
@@ -14,6 +18,13 @@ class TweetResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            "id" => $this->id,
+            "text" => $this->text,
+            "likes" => $this->likes,
+            "created_at" => $this->created_at,
+            "updated_at" => $this->updated_at,
+            "user" => $this->user,
+        ];
     }
 }

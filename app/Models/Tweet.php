@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $id
@@ -20,10 +21,18 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tweet whereLikes($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tweet whereText($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Tweet whereUpdatedAt($value)
+ * @property int $user_id
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Tweet whereUserId($value)
  * @mixin \Eloquent
  */
 class Tweet extends Model
 {
     /** @use HasFactory<\Database\Factories\TweetFactory> */
     use HasFactory;
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
