@@ -19,3 +19,4 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/auth', [LoginController::class, 'checkAuth'])->middleware('auth:sanctum');
 Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
+Route::get('/me', [UserController::class, 'me'])->middleware('auth:sanctum');
