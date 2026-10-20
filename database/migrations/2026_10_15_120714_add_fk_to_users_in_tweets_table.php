@@ -12,7 +12,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('tweets', function (Blueprint $table) {
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('tweets', function (Blueprint $table) {
-            $table->dropForeignIdFor(User::class);
+            $table->dropConstrainedForeignIdFor(User::class);
         });
     }
 };
