@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,12 @@ Route::prefix('/users')
         Route::get('/new', 'new');
         Route::get('/{user}', 'show');
         Route::get('/{user}/tweets', 'findTweetsByUserId');
+    });
+
+Route::prefix('/tags')
+    ->controller(TagController::class)
+    ->group(function () {
+        Route::get('/top', 'index');
     });
 
 Route::prefix('/me')
