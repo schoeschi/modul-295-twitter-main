@@ -9,6 +9,8 @@ Route::prefix('/tweets')
     ->controller(TweetController::class)
     ->group(function () {
         Route::get('/', 'index');
+        Route::get('/{tweet}', 'find');
+        Route::get('/{tweet}/related', 'related');
         Route::post('/', 'store')->middleware('auth:sanctum');
         Route::post('/{tweet}/like', 'like')->middleware('auth:sanctum');
     });
