@@ -22,4 +22,10 @@ class LoginController extends Controller
     {
         return UserResource::make($request->user());
     }
+
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+        return ["message" => "Logged out"];
+    }
 }
