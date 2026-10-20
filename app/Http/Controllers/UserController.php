@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function findTweetsByUserId(User $user)
     {
-        $tweetsByUser = $user->tweets()->latest()->limit(10)->get();
+        $tweetsByUser = $user->tweets()->with('user')->latest()->limit(10)->get();
         return TweetResource::collection($tweetsByUser);
     }
 
