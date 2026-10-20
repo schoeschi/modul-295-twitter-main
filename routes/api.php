@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/tweets')->group(function () {
     Route::get('/', [TweetController::class, 'index']);
     Route::post('/', [TweetController::class, 'store'])->middleware('auth:sanctum');
-    Route::post('/{id}/like', [TweetController::class, 'like'])->middleware('auth:sanctum');
+    Route::post('/{tweet}/like', [TweetController::class, 'like'])->middleware('auth:sanctum');
 });
 
 Route::prefix('/users')
     ->controller(UserController::class)
     ->group(function () {
         Route::get('/{id}', 'show');
-        Route::get('/{id}/tweets', 'findTweetsByUserId');
+        Route::get('/{user}/tweets', 'findTweetsByUserId');
     });
 
 Route::post('/login', [LoginController::class, 'login']);
