@@ -27,7 +27,7 @@ class TweetController extends Controller
     public function like(Tweet $tweet, Request $request)
     {
         if ($tweet->user_id == $request->user()->id) return ["message" => "Cannot like own post."];
-        $tweet->increment('likes');
+        $request->user()->likedTweets()->toggle($tweet->id);
         return TweetResource::make($tweet);
     }
 }
