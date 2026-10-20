@@ -86,7 +86,7 @@ class User extends Authenticatable
     public function isVerified(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->tweets->sum('likes') > 80000,
+            get: fn() => $this->tweets->sum('likes') >= 80000,
         );
     }
 }

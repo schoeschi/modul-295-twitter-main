@@ -14,7 +14,7 @@ Route::prefix('/tweets')->group(function () {
 Route::prefix('/users')
     ->controller(UserController::class)
     ->group(function () {
-        Route::get('/{id}', 'show');
+        Route::get('/{user}', 'show');
         Route::get('/{user}/tweets', 'findTweetsByUserId');
     });
 
