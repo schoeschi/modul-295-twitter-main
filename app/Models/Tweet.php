@@ -41,4 +41,9 @@ class Tweet extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
