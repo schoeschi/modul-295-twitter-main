@@ -5,8 +5,11 @@ use App\Http\Controllers\TweetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/tweets', [TweetController::class, 'index']);
-Route::post('/tweets', [TweetController::class, 'store'])->middleware('auth:sanctum');
+Route::prefix('/tweets')->group(function () {
+    Route::get('/', [TweetController::class, 'index']);
+    Route::post('/', [TweetController::class, 'store'])->middleware('auth:sanctum');
+    Route::post('/{id}/like', [TweetController::class, 'like'])->middleware('auth:sanctum');
+});
 
 Route::prefix('/users')
     ->controller(UserController::class)

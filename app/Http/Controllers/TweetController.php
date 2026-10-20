@@ -22,4 +22,10 @@ class TweetController extends Controller
         $tweet->save();
         return TweetResource::make($tweet);
     }
+
+    public function like(Tweet $tweet)
+    {
+        $tweet->increment('likes');
+        return TweetResource::make($tweet);
+    }
 }

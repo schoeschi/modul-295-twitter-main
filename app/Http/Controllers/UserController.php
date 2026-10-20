@@ -10,14 +10,14 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function show(int $id)
+    public function show(User $user)
     {
-        return UserResource::make(User::whereId($id)->firstOrFail());
+        return UserResource::make($user);
     }
 
-    public function findTweetsByUserId(int $id)
+    public function findTweetsByUserId(User $user)
     {
-        $tweetsByUser = User::findOrFail($id)->tweets()->latest()->limit(10)->get();
+        $tweetsByUser = $user->tweets()->latest()->limit(10)->get();
         return TweetResource::collection($tweetsByUser);
     }
 
