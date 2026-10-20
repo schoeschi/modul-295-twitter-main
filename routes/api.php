@@ -20,3 +20,4 @@ Route::get('/auth', [LoginController::class, 'checkAuth'])->middleware('auth:san
 Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
 Route::get('/me', [UserController::class, 'me'])->middleware('auth:sanctum');
+Route::put('/me', [UserController::class, 'updateMe'])->middleware('auth:sanctum');
