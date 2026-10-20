@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTweetRequest;
 use App\Http\Resources\TweetResource;
 use App\Models\Tweet;
+use Illuminate\Http\Request;
 
 class TweetController extends Controller
 {
@@ -23,8 +24,9 @@ class TweetController extends Controller
         return TweetResource::make($tweet);
     }
 
-    public function like(Tweet $tweet)
+    public function like(Tweet $tweet, Request $request)
     {
+        if ($tweet->user_id == $request->user()->id) return ["message" => "Cannot like own post."];
         $tweet->increment('likes');
         return TweetResource::make($tweet);
     }
