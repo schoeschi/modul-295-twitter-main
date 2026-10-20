@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\TopUserResource;
 use App\Http\Resources\TweetResource;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -46,5 +47,13 @@ class UserController extends Controller
     {
         $request->user()->delete();
         return ["message" => "User deleted"];
+    }
+
+    public function top()
+    {
+        return TopUserResource::collection(User::withCount('tweets')
+            ->orderByDesc('tweets_count')
+            ->take(3)
+            ->get());
     }
 }
