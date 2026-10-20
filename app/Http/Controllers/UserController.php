@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\NewUserResource;
 use App\Http\Resources\TopUserResource;
 use App\Http\Resources\TweetResource;
 use App\Http\Resources\UserResource;
@@ -55,5 +56,10 @@ class UserController extends Controller
             ->orderByDesc('tweets_count')
             ->take(3)
             ->get());
+    }
+
+    public function new()
+    {
+        return NewUserResource::collection(User::take(3)->get());
     }
 }
